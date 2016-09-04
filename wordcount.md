@@ -61,3 +61,16 @@ Wordcount程序是hadoop的应官方实例，在hadoop安装环境下的/share/h
 有几个需要注意的问题，首先是hadoop的core.site.xml配置文件中，制定的fs.defaultFS的value应该制定为公网ip，这样才能让别的主机访问到，端口号就是eclipse新建项目时需要的端口号。
 
 之后可以run on reduce，就可以看到结果了。
+## 一些错误
+远程调试的时候会遇到permission denied的问题,那么这样的话，可以将hadoop的hdfs.site.xml中新增一条属性，将dfs.permissions 设置为false
+```
+  <property>
+                <name>dfs.permissions</name>
+                <value>False</value>
+  </property>
+```
+或者将hadoop的权限修改
+```
+hadoop fs -chmod 777 /user/root
+```
+然后在eclipse中重新连接即可
